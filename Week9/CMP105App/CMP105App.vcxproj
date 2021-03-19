@@ -158,10 +158,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Animation.cpp" />
+    <ClCompile Include="Framework\BaseLevel.cpp" />
     <ClCompile Include="Framework\Collision.cpp" />
     <ClCompile Include="Framework\Input.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
-    <ClCompile Include="Framework\Vector.cpp" />
+    <ClCompile Include="Framework\VectorHelper.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -171,10 +172,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Animation.h" />
+    <ClInclude Include="Framework\BaseLevel.h" />
     <ClInclude Include="Framework\Collision.h" />
     <ClInclude Include="Framework\Input.h" />
     <ClInclude Include="Framework\GameObject.h" />
-    <ClInclude Include="Framework\Vector.h" />
+    <ClInclude Include="Framework\VectorHelper.h" />
     <ClInclude Include="Level.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

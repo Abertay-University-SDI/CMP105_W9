@@ -3,8 +3,8 @@
 Input::Input()
 {
 	// set default values
-	mouse.left = false;
-	mouse.right = false;
+	mouse.left = MouseState::UP;
+	mouse.right = MouseState::UP;
 	mouse.x = 0;
 	mouse.y = 0;
 }
@@ -34,6 +34,35 @@ bool Input::isKeyDown(int key)
 	return false;
 }
 
+bool Input::isPressed(int key)
+{
+	bool cond = isKeyDown(key);
+	if (cond)
+	{
+		pressed.push_back(key);
+		return cond;
+	}
+	return false;
+}
+
+void Input::update()
+{
+	for (int i = 0; i < pressed.size(); i++)
+	{
+		setKeyUp(pressed[i]);
+	}
+	pressed.clear();
+
+	if (mouse.left == MouseState::PRESSED)
+	{
+		mouse.left = MouseState::UP;
+	}
+	if (mouse.right == MouseState::PRESSED)
+	{
+		mouse.right = MouseState::UP;
+	}
+}
+
 void Input::setMouseX(int lx)
 {
 	mouse.x = lx;
@@ -60,21 +89,49 @@ int Input::getMouseY()
 	return mouse.y;
 }
 
-void Input::setMouseLDown(bool down)
+void Input::setLeftMouse(MouseState state)
 {
-	mouse.left = down;
+	mouse.left = state;
 }
-bool Input::isMouseLDown()
+bool Input::isLeftMouseDown()
 {
-	return mouse.left;
+	if (mouse.left == MouseState::DOWN || mouse.left == MouseState::PRESSED)
+	{
+		return true;
+	}
+	return false;
 }
 
-void Input::setMouseRDown(bool down)
+bool Input::isLeftMousePressed()
 {
-	mouse.right = down;
+	if (mouse.left == MouseState::DOWN || mouse.left == MouseState::PRESSED)
+	{
+		mouse.left = MouseState::PRESSED;
+		return true;
+	}
+	return false;
 }
-bool Input::isMouseRDown()
+
+void Input::setRightMouse(MouseState state)
 {
-	return mouse.right;
+	mouse.right = state;
+}
+bool Input::isRightMouseDown()
+{
+	if (mouse.right == MouseState::DOWN || mouse.right == MouseState::PRESSED)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Input::isRightMousePressed()
+{
+	if (mouse.right == MouseState::DOWN || mouse.right == MouseState::PRESSED)
+	{
+		mouse.right = MouseState::PRESSED;
+		return true;
+	}
+	return false;
 }
 
